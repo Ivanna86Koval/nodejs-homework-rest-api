@@ -3,5 +3,4 @@ const HttpError = (status, message) => {
   error.status = status;
   return error;
 };
-
 export default HttpError;
