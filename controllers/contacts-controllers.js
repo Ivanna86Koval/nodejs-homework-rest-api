@@ -1,4 +1,4 @@
-import * as contactsService from "../models/contacts/contacts.js";
+import contactsService from "../models/contacts/contacts.js";
 import { HttpError } from "../helpers/index.js";
 import {
   contactAddSchema,
