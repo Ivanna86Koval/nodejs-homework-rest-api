@@ -8,7 +8,7 @@ import {
 
 const listContacts = async (req, res, next) => {
   try {
-    const result = await contactsService.getAllContacts();
+    const result = await contactsService.find({});
     res.json(result);
   } catch (error) {
     next(error);
@@ -17,7 +17,7 @@ const listContacts = async (req, res, next) => {
 const getContactById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await contactsService.getContById(id);
+    const result = await contactsService.findById(id);
     if (!result) {
       throw HttpError(404, `Not found`);
     }
@@ -32,7 +32,7 @@ const addContact = async (req, res, next) => {
     if (error) {
       throw HttpError(400, error.message);
     }
-    const result = await contactsService.addCont(req.body);
+    const result = await contactsService.create(req.body);
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -45,7 +45,24 @@ const updateContact = async (req, res, next) => {
       throw HttpError(400, error.message);
     }
     const { id } = req.params;
-    const result = await contactsService.updateContactById(id, req.body);
+    const result = await contactsService.findByIdAndUpdate(id, req.body);
+    if (!result) {
+      throw HttpError(404, `Not found`);
+    }
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const patchContact = async (req, res, next) => {
+  try {
+    const { error } = contactFavoriteSchema.validate(req.body);
+    if (error) {
+      throw HttpError(400, error.message);
+    }
+    const { id } = req.params;
+    const result = await contactsService.findByIdAndUpdate(id, req.body);
     if (!result) {
       throw HttpError(404, `Not found`);
     }
@@ -58,7 +75,7 @@ const updateContact = async (req, res, next) => {
 const removeContact = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await contactsService.removeCont(id);
+    const result = await contactsService.findByIdAndDelete(id);
     if (!result) {
       throw HttpError(404, `${id} not found`);
     }
@@ -75,5 +92,6 @@ export default {
   getContactById,
   addContact,
   updateContact,
+  patchContact,
   removeContact,
 };
