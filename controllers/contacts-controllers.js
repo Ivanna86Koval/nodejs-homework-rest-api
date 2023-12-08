@@ -1,9 +1,10 @@
-import contactsService from "../models/contacts/contacts.js";
+import contactsService from "../models/contacts/contacts";
 import { HttpError } from "../helpers/index.js";
 import {
   contactAddSchema,
   contactUpdateSchema,
-} from "../validation/schemas.js";
+  contactFavoriteSchema,
+} from "../models/contacts/contacts.js";
 
 const listContacts = async (req, res, next) => {
   try {
