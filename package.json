@@ -3,8 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": "18.16"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./server.js",
