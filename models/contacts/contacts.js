@@ -1,10 +1,8 @@
-import { error } from "console";
-// import { date } from "joi";
+import Joi from "joi";
 import { Schema, model } from "mongoose";
 import { handleSaveError, preUpdate } from "./hooks.js";
-import Joi from "joi";
 
-const contactSchema = new Schema(
+export const contactSchema = new Schema(
   {
     name: {
       type: String,
