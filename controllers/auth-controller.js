@@ -1,12 +1,11 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+import "dotenv/config";
 
 import User from "../models/contacts/User.js";
 import { HttpError } from "../helpers/index.js";
 import { userSignupSchema, userSigninSchema } from "../models/contacts/User.js";
 
-dotenv.config();
 const { JWT_SECRET } = process.env;
 
 const signup = async (req, res, next) => {
