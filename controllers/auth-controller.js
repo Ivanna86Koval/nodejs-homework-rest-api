@@ -69,7 +69,7 @@ const signin = async (req, res, next) => {
 };
 
 const getCurrent = async (req, res) => {
-  const { email, subscription } = req.user;
+  const { email, subscription } = res.user;
 
   res.status(200).json({
     email,
@@ -77,7 +77,7 @@ const getCurrent = async (req, res) => {
   });
 };
 const signout = async (req, res) => {
-  const { _id } = req.user;
+  const { _id } = res.user;
   await User.findByIdAndUpdate(_id, { token: "" });
 
   res.status(204).json({});
