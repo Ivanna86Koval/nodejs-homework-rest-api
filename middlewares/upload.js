@@ -4,7 +4,7 @@ import { HttpError } from "../helpers/index.js";
 
 const destination = path.resolve("temp");
 
-const storage = multe.diskStorage({
+const storage = multer.diskStorage({
   destination,
   filename: (eq, file, cb) => {
     const uniquePrefix = `${Date.now()}_${Math.round(Math.random() * 1e9)}`;
