@@ -80,7 +80,13 @@ const signout = async (req, res) => {
   const { _id } = res.user;
   await User.findByIdAndUpdate(_id, { token: "" });
 
-  res.status(204).json({});
+  res.status(204).json({
+    message: "Signout success",
+  });
+
+  // if (!_id) {
+  //   throw HttpError(401, "Not authorized");
+  // }
 };
 
 export default {
