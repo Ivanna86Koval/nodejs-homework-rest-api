@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import Contact from "../models/contacts/contacts.js";
-import { HttpError } from "../helpers/index.js";
+import { HttpError, cloudinary } from "../helpers/index.js";
 
 import {
   contactAddSchema,
