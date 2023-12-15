@@ -30,7 +30,7 @@ const userSchema = new Schema(
       required: [true, "Set avatarURL"],
     },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 );
 
 userSchema.post("save", handleSaveError);

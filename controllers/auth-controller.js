@@ -69,7 +69,7 @@ const signin = async (req, res, next) => {
     res.status(200).json({
       token,
       user: {
-        email,
+        email: user.email,
         subscription: user.subscription,
       },
     });
