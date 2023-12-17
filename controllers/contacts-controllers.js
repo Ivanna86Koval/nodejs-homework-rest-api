@@ -45,10 +45,8 @@ const addContact = async (req, res, next) => {
     const { path: oldPath, filename } = req.file;
     const newPath = path.join(avatarsPath, filename);
     await fs.rename(oldPath, newPath);
-
     const avatar = path.join("avatars", filename);
     const result = await Contact.create({ ...req.body, avatar, owner });
-
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -91,6 +89,7 @@ const patchContact = async (req, res, next) => {
     next(error);
   }
 };
+
 const removeContact = async (req, res, next) => {
   try {
     const { id } = req.params;

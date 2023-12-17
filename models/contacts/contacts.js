@@ -2,12 +2,8 @@ import Joi from "joi";
 import { Schema, model } from "mongoose";
 import { handleSaveError, preUpdate } from "./hooks.js";
 
-export const contactSchema = new Schema(
+const contactSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: [true, "Set name for contact"],
-    },
     email: {
       type: String,
     },
@@ -24,10 +20,9 @@ export const contactSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: "user",
-      required: true,
     },
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false }
 );
 
 contactSchema.post("save", handleSaveError);
