@@ -34,7 +34,6 @@ const signup = async (req, res, next) => {
 
     const hashPassword = await bcrypt.hash(password, 10);
     const avatarURL = gravatar.url(email);
-
     const verificationToken = nanoid();
 
     const newUser = await User.create({
@@ -127,16 +126,16 @@ const signin = async (req, res, next) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      throw HttpError(401, "Email or password is wrong");
+      throw HttpError(401, "Email or password invalid");
     }
 
     if (!user.verify) {
-      throw HttpError(401, "User not found");
+      throw HttpError(401, "Email not verify");
     }
 
     const passwordCompare = await bcrypt.compare(password, user.password);
     if (!passwordCompare) {
-      throw HttpError(401, "Email or password is wrong");
+      throw HttpError(401, "Email or password invalid");
     }
     const payload = {
       id: user._id,
